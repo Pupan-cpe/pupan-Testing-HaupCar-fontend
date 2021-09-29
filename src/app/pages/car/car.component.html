@@ -1,0 +1,32 @@
+<div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+  <div nz-col class="gutter-row" [nzSpan]="24">
+    <nz-table #basicTable [nzData]="listCar">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>brand</th>
+          <th>model</th>
+          <th>licensePate</th>
+          <th>annotation</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data; let i = index">
+          <td>{{ i + 1 }}</td>
+
+          <td>{{ data.brand }}</td>
+
+          <td>{{ data.model }}</td>
+          <td>{{ data.licensePate }}</td>
+          <td>{{ data.annotation }}</td>
+          <td>
+            <a>Edit </a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
