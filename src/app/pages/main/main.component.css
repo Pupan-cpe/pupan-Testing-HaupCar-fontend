@@ -5,6 +5,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ant-btn-dangerous {
+  color: #0000;
+  background: #fff;
+  border-color: #3cb371;
+}
+
 .app-layout {
   height: 100vh;
 }

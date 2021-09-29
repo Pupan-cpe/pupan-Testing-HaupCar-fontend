@@ -1,8 +1,18 @@
 nz-divider {
   color: #333;
-  fontweight: normal;
 }
 .inner-box {
   background: #0092ff;
   padding: 8px 0;
+}
+
+/* .ant-btn-dangerous {
+  background: #fff;
+  border-color: #3cb371;
+} */
+
+.ant-btn-dangerous {
+  color: #3cb371;
+  background: #fff;
+  border-color: #3cb371;
 }
