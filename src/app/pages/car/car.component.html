@@ -1,51 +1,164 @@
+<h2>Manage Car Demo</h2>
+
 <nz-modal
-  [(nzVisible)]="isShowmodal"
-  nzTitle="เพิ่มข้อมูล"
-  (nzOnCancel)="cancel()"
-  (nzOnOk)="submitdata()"
+  [(nzVisible)]="isShowmodalUpdated"
+  nzTitle="แก้ไขข้อมูล"
+  (nzOnCancel)="cancelupdate()"
   [nzFooter]="modalFooter"
 >
-
   <ng-container *nzModalContent>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitFormEdit()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>ยี่ห้อรถ</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="กรุณากรอกยี่ห้อรถ">
+          <nz-select formControlName="brand" id="brand" nzPlaceHolder="รุ่นรถ">
+            <!-- *ngFor="let data of modelCar let i = index;"
+             -->
 
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-      <nz-form-item>
-        <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Note</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzErrorTip="Please input your username!">
-          <input id="note" type="text" nz-input formControlName="note" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSpan]="5" nzFor="gender" nzRequired>Gender</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzErrorTip="Please select your gender!">
-          <nz-select
-            id="gender"
-            formControlName="gender"
-            nzPlaceHolder="Select a option and change input text above"
-            (ngModelChange)="genderChange($event)"
-          >
-            <nz-option nzValue="male" nzLabel="male"></nz-option>
-            <nz-option nzValue="female" nzLabel="female"></nz-option>
+            <nz-option
+              *ngFor="let data of modelCar"
+              nzLabel="{{ data.make }}"
+              nzValue="{{ data.make }}"
+              >{{ data.make }}</nz-option
+            >
           </nz-select>
+
+          <!-- <input id="brand" type="text" nz-input formControlName="brand" /> -->
         </nz-form-control>
       </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>รุ่นรถ</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="กรุณากรอกรุ่นรถ">
+          <nz-select formControlName="model" id="model" nzPlaceHolder="รุ่นรถ">
+            <!-- *ngFor="let data of modelCar let i = index;"
+             -->
+
+            <nz-option
+              *ngFor="let data of modelCar"
+              nzLabel="{{ data.model }}"
+              nzValue="{{ data.model }}"
+              >{{ data.model }}</nz-option
+            >
+          </nz-select>
+
+          <!-- <input id="model" type="text" nz-input formControlName="model" /> -->
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>ทะเบียนรถ</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="กรุณากรอกทะเบียนรถ">
+          <input
+            id="licensePate"
+            type="text"
+            nz-input
+            formControlName="licensePate"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5">หมายเหตุ</nz-form-label>
+        <nz-textarea-count>
+          <textarea rows="5" formControlName="annotation" nz-input></textarea>
+        </nz-textarea-count>
+      </nz-form-item>
+
       <nz-form-item>
         <nz-form-control [nzSpan]="6" [nzOffset]="5">
           <button nz-button nzType="primary">Submit</button>
         </nz-form-control>
       </nz-form-item>
-
-
     </form>
-
-
 
     <!-- <input nz-input placeholder="Basic usage" [(ngModel)]="licensePate" />
 
     <textarea rows="4" nz-input [(ngModel)]="annotation"></textarea> -->
   </ng-container>
   <ng-template #modalFooter>
+    <!-- <button nz-button nzType="default" (click)="cancel()">Custom Callback</button>
+    <button nz-button nzType="primary" (click)="submitdata()" [nzLoading]="isConfirmLoading">Custom Submit</button> -->
+  </ng-template>
+</nz-modal>
 
+<nz-modal
+  [(nzVisible)]="isShowmodal"
+  nzTitle="เพิ่มข้อมูล"
+  (nzOnCancel)="cancel()"
+  [nzFooter]="modalFooter"
+>
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>ยี่ห้อรถ</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="กรุณากรอกยี่ห้อรถ">
+          <nz-select formControlName="brand" id="brand" nzPlaceHolder="รุ่นรถ">
+            <!-- *ngFor="let data of modelCar let i = index;"
+             -->
+
+            <nz-option
+              *ngFor="let data of modelCar"
+              nzLabel="{{ data.make }}"
+              nzValue="{{ data.make }}"
+              >{{ data.make }}</nz-option
+            >
+          </nz-select>
+
+          <!-- <input id="brand" type="text" nz-input formControlName="brand" /> -->
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>รุ่นรถ</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="กรุณากรอกรุ่นรถ">
+          <nz-select formControlName="model" id="model" nzPlaceHolder="รุ่นรถ">
+            <!-- *ngFor="let data of modelCar let i = index;"
+             -->
+
+            <nz-option
+              *ngFor="let data of modelCar"
+              nzLabel="{{ data.model }}"
+              nzValue="{{ data.model }}"
+              >{{ data.model }}</nz-option
+            >
+          </nz-select>
+
+          <!-- <input id="model" type="text" nz-input formControlName="model" /> -->
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>ทะเบียนรถ</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="กรุณากรอกทะเบียนรถ">
+          <input
+            id="licensePate"
+            type="text"
+            nz-input
+            formControlName="licensePate"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5">หมายเหตุ</nz-form-label>
+        <nz-textarea-count>
+          <textarea rows="5" formControlName="annotation" nz-input></textarea>
+        </nz-textarea-count>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control [nzSpan]="6" [nzOffset]="5">
+          <button nz-button nzType="primary">Submit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+    <!-- <input nz-input placeholder="Basic usage" [(ngModel)]="licensePate" />
+
+    <textarea rows="4" nz-input [(ngModel)]="annotation"></textarea> -->
+  </ng-container>
+  <ng-template #modalFooter>
     <!-- <button nz-button nzType="default" (click)="cancel()">Custom Callback</button>
     <button nz-button nzType="primary" (click)="submitdata()" [nzLoading]="isConfirmLoading">Custom Submit</button> -->
   </ng-template>
@@ -76,16 +189,14 @@
       <tbody>
         <tr *ngFor="let data of basicTable.data; let i = index">
           <td>{{ i + 1 }}</td>
-
           <td>{{ data.brand }}</td>
-
           <td>{{ data.model }}</td>
           <td>{{ data.licensePate }}</td>
           <td>{{ data.annotation }}</td>
           <td>
-            <a>Edit </a>
+            <a (click)="updatecar(data)">Edit </a>
             <nz-divider nzType="vertical"></nz-divider>
-            <a>Delete</a>
+            <a (click)="deletecar(data.id)">Delete</a>
           </td>
         </tr>
       </tbody>

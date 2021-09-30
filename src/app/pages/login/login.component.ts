@@ -38,13 +38,13 @@ export class LoginComponent implements OnInit {
       userName: this.validateForm.controls.userName.value as string,
       password: this.validateForm.controls.password.value as string,
     };
-    void this.router.navigateByUrl('/welcome');
 
     console.log(data);
     if (e === true) {
+      void this.router.navigateByUrl('/Managecar');
+
       this.loginService.login().then((res) => {
         // console.log(res, 'message from api ');
-          void this.router.navigateByUrl('/Managecar');
 
         // if (res.message === 'err') {
 
